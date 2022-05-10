@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  db:
+    image: postgres:14.2
+    container_name: standard_db
+    restart: always
+    # ports:
+    #     - 9055:5432
+    # TO BE CHANGED
+    environment:
+      POSTGRES_USER: standard
+      POSTGRES_PASSWORD: standard
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - database_data:/var/lib/postgresql/data
+      - ./Sarf/init_db.sh:/docker-entrypoint-initdb.d/sarf_init_db.sh
+  sarf:
+    build:
+      context: .
+      dockerfile: ./Sarf/dockerfile
+    container_name: standard_sarf
+    # ports:
+    #     - 7002:7002
+    restart: always
+    depends_on:
+      - db
+    links:
+      - db
+
+volumes:
+  database_data:
+    driver: local
