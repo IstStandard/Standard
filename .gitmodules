@@ -4,3 +4,6 @@
 [submodule "StandardShared"]
 	path = StandardShared
 	url = https://github.com/icYFTL/StandardShared
+[submodule "Core"]
+	path = Core
+	url = https://github.com/IstStandard/Core
