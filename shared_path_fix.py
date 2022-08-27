@@ -1,5 +1,6 @@
 import re
 import sys
+from os import path
 
 if len(sys.argv) != 4:
     print('Usage: python3 shared_path_fix.py target_sln target_csproj path_to_shared_csproj')
@@ -7,7 +8,7 @@ if len(sys.argv) != 4:
 
 target_sln = sys.argv[1]
 target_csproj = sys.argv[2]
-shared = sys.argv[3]
+shared = path.abspath(sys.argv[3])
 
 
 csproj = open(target_csproj, 'r', encoding='UTF-8').read()
